@@ -1,0 +1,17 @@
+{
+  "name": "iamalamb/utils",
+  "description": "A collection of useful utility classes and functions.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Jason Lamb",
+      "email": "jlamb@iamalamb.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Iamalamb\\Utils\\": "src/"
+    }
+  }
+}
