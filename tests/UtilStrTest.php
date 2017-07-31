@@ -61,6 +61,10 @@ class UtilStrTest extends TestCase
                 'original' => 'mixed_up-case-example',
                 'expected' => 'MixedUpCaseExample',
             ],
+            [
+                'original' => 0,
+                'expected' => 0,
+            ],
         ];
 
         $total = count($strings);
