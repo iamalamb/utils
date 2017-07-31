@@ -27,17 +27,45 @@
 use PHPUnit\Framework\TestCase;
 use Iamalamb\Utils\Str;
 
-class StrGetClassNameTest extends TestCase
+class UtilStrTest extends TestCase
 {
 
     public function testThatGetClassNameReturnsAValidClassName()
     {
-        $str = new Str();
-        $className = $str->getClassName('ClassA');
-        $this->assertEquals('ClassA', $className);
-        $this->assertEquals('ClassA', $str->getClassName('NameSpace\\ClassA'));
-        $this->assertEquals('ClassA', $str->getClassName('NameSpace\\SubNameSpace\\ClassA'));
-        $this->assertEquals('ClassA', $str->getClassName('NameSpace\\SubNameSpace\\ExtraSubNameSpace\\ClassA'));
-        $this->assertEquals('ClassA', $str->getClassName('NameSpace\\SubNameSpace\\ExtraSubNameSpace\\YetAnotherSubNameSpace\\ClassA'));
+        $classes = [
+            'ClassA',
+            'NameSpace\\ClassA',
+            'NameSpace\\SubNameSpace\\ClassA',
+            'NameSpace\\SubNameSpace\\ExtraSubNameSpace\\ClassA',
+            'NameSpace\\SubNameSpace\\ExtraSubNameSpace\\YetAnotherSubNameSpace\\ClassA',
+        ];
+
+        $total = count($classes);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals('ClassA', Str::getClassName($classes[$i]));
+        }
+    }
+
+    public function testThatToStudlyCaseConvertsCorrectly()
+    {
+        $strings = [
+            [
+                'original' => 'snake_case_example',
+                'expected' => 'SnakeCaseExample',
+            ],
+            [
+                'original' => 'kebab-case-example',
+                'expected' => 'KebabCaseExample',
+            ],
+            [
+                'original' => 'mixed_up-case-example',
+                'expected' => 'MixedUpCaseExample',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toStudlyCase($strings[$i]['original']));
+        }
     }
 }

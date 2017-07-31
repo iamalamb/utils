@@ -51,4 +51,16 @@ class Str
 
         return substr(strrchr($class, '\\'), 1);
     }
+
+    /**
+     * Takes a string in either kebab case or snake case
+     * and converts it to studly case.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toStudlyCase($value)
+    {
+        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)));
+    }
 }
