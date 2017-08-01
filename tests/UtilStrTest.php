@@ -138,8 +138,31 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testGetStringLength()
+    public function testGetLength()
     {
+        $strings = [
+            [
+                'original' => 'ABCDEFGHIJ',
+                'expected' => 10,
+            ],
+            [
+                'original' => 'ABCDE',
+                'expected' => 5,
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::getLength($strings[$i]['original']));
+        }
+
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::getLength($strings[$i]['original'], 'UTF-8'));
+        }
+
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::getLength($strings[$i]['original'], 'ASCII'));
+        }
     }
 
 }
