@@ -131,4 +131,16 @@ class Str
     {
         return mb_strtoupper($value, 'UTF-8');
     }
+
+    /**
+     * Converts the first character of a given string to
+     * uppercase using UTF-8 encoding.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toUcFirst($value)
+    {
+        return static::toUpperCase(static::getSubString($value, 0, 1)).static::getSubString($value, 1);
+    }
 }

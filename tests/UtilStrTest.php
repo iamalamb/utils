@@ -211,4 +211,23 @@ class UtilStrTest extends TestCase
         }
     }
 
+    public function testToUcFirst()
+    {
+        $strings = [
+            [
+                'original' => 'jason',
+                'expected' => 'Jason',
+            ],
+            [
+                'original' => 'jASON',
+                'expected' => 'JASON',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toUcFirst($strings[$i]['original']));
+        }
+    }
+
 }
