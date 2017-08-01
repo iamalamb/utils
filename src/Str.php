@@ -54,6 +54,23 @@ class Str
     }
 
     /**
+     * Gets the length of a given string
+     * with an optional encoding.
+     *
+     * @param $value
+     * @param null $encoding
+     * @return int
+     */
+    public static function getLength($value, $encoding = null)
+    {
+        if ($encoding) {
+            return mb_strlen($value, $encoding);
+        }
+
+        return mb_strlen($value);
+    }
+
+    /**
      * Takes a string in either kebab case or snake case
      * and converts it to studly case.
      *

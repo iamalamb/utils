@@ -30,7 +30,7 @@ use Iamalamb\Utils\Str;
 class UtilStrTest extends TestCase
 {
 
-    public function testThatGetClassNameReturnsAValidClassName()
+    public function testGetClassName()
     {
         $classes = [
             'ClassA',
@@ -46,7 +46,7 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testThatToStudlyCaseConvertsCorrectly()
+    public function testToStudlyCase()
     {
         $strings = [
             [
@@ -73,7 +73,7 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testThatToLowerCaseConvertsCorrectly()
+    public function testToLowerCase()
     {
         $strings = [
             [
@@ -96,7 +96,7 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testThatToUpperCaseConvertsCorrectly()
+    public function testToUpperCase()
     {
         $strings = [
             [
@@ -119,7 +119,7 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testThatToTitleCaseConvertsCorrectly()
+    public function testToTitleCase()
     {
         $strings = [
             [
@@ -137,4 +137,9 @@ class UtilStrTest extends TestCase
             $this->assertEquals($strings[$i]['expected'], Str::toTitleCase($strings[$i]['original']));
         }
     }
+
+    public function testGetStringLength()
+    {
+    }
+
 }
