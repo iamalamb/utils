@@ -71,6 +71,20 @@ class Str
     }
 
     /**
+     * Extracts a substring using
+     * forced UTF-8 encoding.
+     *
+     * @param $value
+     * @param $start
+     * @param null $length
+     * @return string
+     */
+    public static function getSubString($value, $start, $length = null)
+    {
+        return mb_substr($value, $start, $length, 'UTF-8');
+    }
+
+    /**
      * Takes a string in either kebab case or snake case
      * and converts it to studly case.
      *

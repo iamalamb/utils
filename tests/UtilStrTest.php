@@ -165,4 +165,50 @@ class UtilStrTest extends TestCase
         }
     }
 
+    public function testGetSubString()
+    {
+        $range = join('', range('A', 'Z'));
+
+        $opts = [
+            [
+                'start'    => 0,
+                'length'   => 5,
+                'expected' => 'ABCDE',
+            ],
+            [
+                'start'    => 2,
+                'length'   => 10,
+                'expected' => 'CDEFGHIJKL',
+            ],
+            [
+                'start'    => 10,
+                'length'   => null,
+                'expected' => 'KLMNOPQRSTUVWXYZ',
+            ],
+            [
+                'start'    => 0,
+                'length'   => null,
+                'expected' => $range,
+            ],
+            [
+                'start'    => 5,
+                'length'   => -5,
+                'expected' => 'FGHIJKLMNOPQRSTU',
+            ],
+            [
+                'start'    => Str::getLength($range) - 1,
+                'length'   => null,
+                'expected' => 'Z',
+            ],
+        ];
+
+        $total = count($opts);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals(
+                $opts[$i]['expected'],
+                Str::getSubString($range, $opts[$i]['start'], $opts[$i]['length'])
+            );
+        }
+    }
+
 }
