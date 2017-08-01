@@ -42,6 +42,7 @@ class Str
      * extracts just the basename.
      *
      * @param $class
+     * @return string
      */
     public static function getClassName($class)
     {
