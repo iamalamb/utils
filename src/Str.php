@@ -63,4 +63,40 @@ class Str
     {
         return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)));
     }
+
+    /**
+     * Converts a string to lower case with
+     * forced UTF-8 encoding.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toLowerCase($value)
+    {
+        return mb_strtolower($value, 'UTF-8');
+    }
+
+    /**
+     * Converts a string to title case with
+     * forced UTF-8 encoding.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toTitleCase($value)
+    {
+        return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+    }
+
+    /**
+     * Converts a string to upper case with
+     * forced UTF-8 encoding.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toUpperCase($value)
+    {
+        return mb_strtoupper($value, 'UTF-8');
+    }
 }

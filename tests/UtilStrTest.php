@@ -72,4 +72,69 @@ class UtilStrTest extends TestCase
             $this->assertEquals($strings[$i]['expected'], Str::toStudlyCase($strings[$i]['original']));
         }
     }
+
+    public function testThatToLowerCaseConvertsCorrectly()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'this is a mixed up string',
+            ],
+            [
+                'original' => 'THIS STRING IS IN UPPER CASE',
+                'expected' => 'this string is in upper case',
+            ],
+            [
+                'original' => 'üÜäÄsdsdafasdF€',
+                'expected' => 'üüääsdsdafasdf€',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toLowerCase($strings[$i]['original']));
+        }
+    }
+
+    public function testThatToUpperCaseConvertsCorrectly()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'THIS IS A MIXED UP STRING',
+            ],
+            [
+                'original' => 'this string is in lower case',
+                'expected' => 'THIS STRING IS IN LOWER CASE',
+            ],
+            [
+                'original' => 'üäaBcDeF€',
+                'expected' => 'ÜÄABCDEF€',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toUpperCase($strings[$i]['original']));
+        }
+    }
+
+    public function testThatToTitleCaseConvertsCorrectly()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'This Is A Mixed Up String',
+            ],
+            [
+                'original' => 'this string is in lower case',
+                'expected' => 'This String Is In Lower Case',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toTitleCase($strings[$i]['original']));
+        }
+    }
 }
