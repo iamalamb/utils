@@ -29,7 +29,7 @@ namespace Iamalamb\Utils;
 /**
  * Class Str
  *
- * String based utility functions. Borrowed extensively in part from
+ * String based utility functions. Borrowed in part from
  * Laravel string helpers.
  *
  * @see https://laravel.com/docs/5.4/helpers#string
@@ -85,15 +85,28 @@ class Str
     }
 
     /**
-     * Takes a string in either kebab case or snake case
-     * and converts it to studly case.
+     * Converts a string to camel case
      *
      * @param $value
      * @return string
      */
-    public static function toStudlyCase($value)
+    public static function toCamelCase($value)
     {
-        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)));
+        return lcfirst(static::toStudlyCase($value));
+    }
+
+    /**
+     * Converts a string kebab case
+     *
+     * @param $value
+     * @return mixed
+     */
+    public static function toKebabCase($value)
+    {
+        // First replace the potential non-word characters
+        $value = preg_replace('/\W|_+/', '-', $value);
+
+        return $value;
     }
 
     /**
@@ -106,6 +119,42 @@ class Str
     public static function toLowerCase($value)
     {
         return mb_strtolower($value, 'UTF-8');
+    }
+
+    /**
+     * Converts a string to snake case
+     *
+     * @param $value
+     * @return mixed
+     */
+    public static function toSnakeCase($value)
+    {
+        // First replace the potential non-word characters
+        $value = preg_replace('/\W|_+/', '_', $value);
+
+        return $value;
+    }
+
+    /**
+     * Takes a string in either kebab case or snake case
+     * and converts it to studly case.
+     *
+     * @param $value
+     * @return string
+     */
+    public static function toStudlyCase($value)
+    {
+        // First replace the potential non-word characters
+        $value = preg_replace('/\W|_+/', ' ', $value);
+
+        $value = static::toLowerCase($value);
+
+        $parts = explode(' ', $value);
+        $parts = array_map(['static', 'toUcFirst'], $parts);
+
+        $value = join('', $parts);
+
+        return $value;
     }
 
     /**

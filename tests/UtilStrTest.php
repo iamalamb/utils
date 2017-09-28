@@ -46,98 +46,6 @@ class UtilStrTest extends TestCase
         }
     }
 
-    public function testToStudlyCase()
-    {
-        $strings = [
-            [
-                'original' => 'snake_case_example',
-                'expected' => 'SnakeCaseExample',
-            ],
-            [
-                'original' => 'kebab-case-example',
-                'expected' => 'KebabCaseExample',
-            ],
-            [
-                'original' => 'mixed_up-case-example',
-                'expected' => 'MixedUpCaseExample',
-            ],
-            [
-                'original' => 0,
-                'expected' => 0,
-            ],
-        ];
-
-        $total = count($strings);
-        for ($i = 0; $i < $total; $i++) {
-            $this->assertEquals($strings[$i]['expected'], Str::toStudlyCase($strings[$i]['original']));
-        }
-    }
-
-    public function testToLowerCase()
-    {
-        $strings = [
-            [
-                'original' => 'this is A mixed up STRING',
-                'expected' => 'this is a mixed up string',
-            ],
-            [
-                'original' => 'THIS STRING IS IN UPPER CASE',
-                'expected' => 'this string is in upper case',
-            ],
-            [
-                'original' => 'üÜäÄsdsdafasdF€',
-                'expected' => 'üüääsdsdafasdf€',
-            ],
-        ];
-
-        $total = count($strings);
-        for ($i = 0; $i < $total; $i++) {
-            $this->assertEquals($strings[$i]['expected'], Str::toLowerCase($strings[$i]['original']));
-        }
-    }
-
-    public function testToUpperCase()
-    {
-        $strings = [
-            [
-                'original' => 'this is A mixed up STRING',
-                'expected' => 'THIS IS A MIXED UP STRING',
-            ],
-            [
-                'original' => 'this string is in lower case',
-                'expected' => 'THIS STRING IS IN LOWER CASE',
-            ],
-            [
-                'original' => 'üäaBcDeF€',
-                'expected' => 'ÜÄABCDEF€',
-            ],
-        ];
-
-        $total = count($strings);
-        for ($i = 0; $i < $total; $i++) {
-            $this->assertEquals($strings[$i]['expected'], Str::toUpperCase($strings[$i]['original']));
-        }
-    }
-
-    public function testToTitleCase()
-    {
-        $strings = [
-            [
-                'original' => 'this is A mixed up STRING',
-                'expected' => 'This Is A Mixed Up String',
-            ],
-            [
-                'original' => 'this string is in lower case',
-                'expected' => 'This String Is In Lower Case',
-            ],
-        ];
-
-        $total = count($strings);
-        for ($i = 0; $i < $total; $i++) {
-            $this->assertEquals($strings[$i]['expected'], Str::toTitleCase($strings[$i]['original']));
-        }
-    }
-
     public function testGetLength()
     {
         $strings = [
@@ -211,6 +119,71 @@ class UtilStrTest extends TestCase
         }
     }
 
+    public function testToLowerCase()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'this is a mixed up string',
+            ],
+            [
+                'original' => 'THIS STRING IS IN UPPER CASE',
+                'expected' => 'this string is in upper case',
+            ],
+            [
+                'original' => 'üÜäÄsdsdafasdF€',
+                'expected' => 'üüääsdsdafasdf€',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toLowerCase($strings[$i]['original']));
+        }
+    }
+
+    public function testToUpperCase()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'THIS IS A MIXED UP STRING',
+            ],
+            [
+                'original' => 'this string is in lower case',
+                'expected' => 'THIS STRING IS IN LOWER CASE',
+            ],
+            [
+                'original' => 'üäaBcDeF€',
+                'expected' => 'ÜÄABCDEF€',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toUpperCase($strings[$i]['original']));
+        }
+    }
+
+    public function testToTitleCase()
+    {
+        $strings = [
+            [
+                'original' => 'this is A mixed up STRING',
+                'expected' => 'This Is A Mixed Up String',
+            ],
+            [
+                'original' => 'this string is in lower case',
+                'expected' => 'This String Is In Lower Case',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toTitleCase($strings[$i]['original']));
+        }
+    }
+
     public function testToUcFirst()
     {
         $strings = [
@@ -230,4 +203,143 @@ class UtilStrTest extends TestCase
         }
     }
 
+    public function testToStudlyCase()
+    {
+        $strings = [
+            [
+                'original' => 'snake_case_example',
+                'expected' => 'SnakeCaseExample',
+            ],
+            [
+                'original' => 'kebab-case-example',
+                'expected' => 'KebabCaseExample',
+            ],
+            [
+                'original' => 'mixed_up-case-example',
+                'expected' => 'MixedUpCaseExample',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example',
+                'expected' => 'YetAnotherMixedUpCaseExample',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example 123',
+                'expected' => 'YetAnotherMixedUpCaseExample123',
+            ],
+            [
+                'original' => '123 yet another mixed_up-case-example',
+                'expected' => '123YetAnotherMixedUpCaseExample',
+            ],
+            [
+                'original' => 0,
+                'expected' => 0,
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toStudlyCase($strings[$i]['original']));
+        }
+    }
+
+    public function testToCamelCase()
+    {
+        $strings = [
+            [
+                'original' => 'jason',
+                'expected' => 'jason',
+            ],
+            [
+                'original' => 'JASON',
+                'expected' => 'jason',
+            ],
+            [
+                'original' => 'JASON Peter Lamb',
+                'expected' => 'jasonPeterLamb',
+            ],
+            [
+                'original' => 'snake_case_example',
+                'expected' => 'snakeCaseExample',
+            ],
+            [
+                'original' => 'kebab-case-example',
+                'expected' => 'kebabCaseExample',
+            ],
+            [
+                'original' => 'mixed_up-case-example',
+                'expected' => 'mixedUpCaseExample',
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toCamelCase($strings[$i]['original']));
+        }
+    }
+
+    public function testToKebabCase()
+    {
+        $strings = [
+            [
+                'original' => 'snake_case_example',
+                'expected' => 'snake-case-example',
+            ],
+            [
+                'original' => 'mixed_up-case-example',
+                'expected' => 'mixed-up-case-example',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example',
+                'expected' => 'yet-another-mixed-up-case-example',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example 123',
+                'expected' => 'yet-another-mixed-up-case-example-123',
+            ],
+            [
+                'original' => '123 yet another mixed_up-case-example',
+                'expected' => '123-yet-another-mixed-up-case-example',
+            ],
+            [
+                'original' => 0,
+                'expected' => 0,
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toKebabCase($strings[$i]['original']));
+        }
+    }
+
+    public function testToSnakeCase()
+    {
+        $strings = [
+            [
+                'original' => 'mixed_up-case-example',
+                'expected' => 'mixed_up_case_example',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example',
+                'expected' => 'yet_another_mixed_up_case_example',
+            ],
+            [
+                'original' => 'yet another mixed_up-case-example 123',
+                'expected' => 'yet_another_mixed_up_case_example_123',
+            ],
+            [
+                'original' => '123 yet another mixed_up-case-example',
+                'expected' => '123_yet_another_mixed_up_case_example',
+            ],
+            [
+                'original' => 0,
+                'expected' => 0,
+            ],
+        ];
+
+        $total = count($strings);
+        for ($i = 0; $i < $total; $i++) {
+            $this->assertEquals($strings[$i]['expected'], Str::toSnakeCase($strings[$i]['original']));
+        }
+    }
 }
